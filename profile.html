@@ -1,0 +1,325 @@
+<html>
+ <head>
+  <title>
+   Dashboard
+  </title>
+  <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            background-color: #1c1c1c;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #2d2d2d;
+            padding: 10px;
+            text-align: center;
+            margin: 10px;
+            border-radius: 5px;
+            position: relative;
+        }
+        .header img {
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .header .vip-info {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header .vip-info div {
+            margin: 0 10px;
+        }
+        .wallet-box {
+            background-color: #2d2d2d;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .wallet-box span {
+            margin-right: 10px;
+        }
+        .section {
+            background-color: #2d2d2d;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .section h5 {
+            border-left: 3px solid orange;
+            padding-left: 10px;
+        }
+        .section .row {
+            margin-top: 10px;
+        }
+        .section .col {
+            text-align: center;
+            padding: 0;
+        }
+        .section .col button {
+            background-color: transparent;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+            width: 100%;
+            transition: background-color 0.3s;
+            position: relative;
+        }
+        .section .col button:hover {
+            background-color: #4a4a4a;
+        }
+        .section .col i {
+            font-size: 24px;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .section .col span {
+            display: block;
+        }
+        .badge-notification {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff4d4d;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+        }
+        .logout {
+            text-align: center;
+            margin: 20px 10px;
+        }
+        .logout button {
+            background-color: #ff4d4d;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s;
+        }
+        .logout button:hover {
+            background-color: #ff6666;
+        }
+        .file-input {
+            display: none;
+        }
+  </style>
+  <script>
+   function handleButtonClick(action) {
+            alert(action + ' button clicked');
+        }
+
+        function toggleBalanceVisibility() {
+            var balanceElement = document.getElementById('balance');
+            var eyeIcon = document.getElementById('eye-icon');
+            if (balanceElement.style.display === 'none') {
+                balanceElement.style.display = 'inline';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            } else {
+                balanceElement.style.display = 'none';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            }
+        }
+
+        function reloadBalance() {
+            alert('Balance reloaded');
+        }
+
+        function changeProfilePhoto() {
+            document.getElementById('file-input').click();
+        }
+
+        function previewProfilePhoto(event) {
+            var reader = new FileReader();
+            reader.onload = function(){
+                var output = document.getElementById('profile-photo');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+  </script>
+ </head>
+ <body>
+  <div class="header">
+   <div class="vip-info">
+    <div>
+     <img alt="User profile picture" height="50" id="profile-photo" onclick="changeProfilePhoto()" src="https://storage.googleapis.com/a1aa/image/zuA4wlgrkA4EPdquB2uJeGESSX5SLVzUXw8KyqyAf01JCWmTA.jpg" width="50"/>
+     <input class="file-input" id="file-input" onchange="previewProfilePhoto(event)" type="file"/>
+    </div>
+    <div>
+     <strong>
+      Raj Khan
+     </strong>
+    </div>
+   </div>
+  </div>
+  <div class="wallet-box">
+   <div>
+    <span>
+     Main Wallet
+    </span>
+    <i class="fas fa-sync-alt" onclick="reloadBalance()" style="cursor: pointer; margin-right: 10px;">
+    </i>
+    <i class="fas fa-eye" id="eye-icon" onclick="toggleBalanceVisibility()" style="cursor: pointer;">
+    </i>
+   </div>
+   <div>
+    <span id="balance">
+     ৳ 0
+    </span>
+   </div>
+  </div>
+  <div class="section">
+   <h5>
+    Funds
+   </h5>
+   <div class="row">
+    <div class="col">
+     <button onclick="handleButtonClick('Deposit')">
+      <i class="fas fa-credit-card">
+      </i>
+      <span>
+       Deposit
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Withdrawal')">
+      <i class="fas fa-credit-card">
+      </i>
+      <span>
+       Withdrawal
+      </span>
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class="section">
+   <h5>
+    History
+   </h5>
+   <div class="row">
+    <div class="col">
+     <button onclick="handleButtonClick('Betting Records')">
+      <i class="fas fa-file-alt">
+      </i>
+      <span>
+       Betting Records
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Turnover')">
+      <i class="fas fa-sync-alt">
+      </i>
+      <span>
+       Turnover
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Transaction Records')">
+      <i class="fas fa-receipt">
+      </i>
+      <span>
+       Transaction Records
+      </span>
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class="section">
+   <h5>
+    Profile
+   </h5>
+   <div class="row">
+    <div class="col">
+     <button onclick="handleButtonClick('Personal Info')">
+      <i class="fas fa-user">
+      </i>
+      <span>
+       Personal Info
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Reset password')">
+      <i class="fas fa-lock">
+      </i>
+      <span>
+       Reset password
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Inbox')">
+      <i class="fas fa-envelope">
+      </i>
+      <span>
+       Inbox
+       <span class="badge-notification">
+        7
+       </span>
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Referral')">
+      <i class="fas fa-user-friends">
+      </i>
+      <span>
+       Referral
+      </span>
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class="section">
+   <h5>
+    Contact Us
+   </h5>
+   <div class="row">
+    <div class="col">
+     <button onclick="handleButtonClick('WhatsApp')">
+      <i class="fab fa-whatsapp">
+      </i>
+      <span>
+       WhatsApp
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Facebook')">
+      <i class="fab fa-facebook">
+      </i>
+      <span>
+       Facebook
+      </span>
+     </button>
+    </div>
+    <div class="col">
+     <button onclick="handleButtonClick('Email')">
+      <i class="fas fa-envelope">
+      </i>
+      <span>
+       Email
+      </span>
+     </button>
+    </div>
+   </div>
+  </div>
+  <div class="logout">
+   <button onclick="handleButtonClick('Log out')">
+    Log out
+   </button>
+  </div>
+ </body>
+</html>
